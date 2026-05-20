@@ -7,15 +7,24 @@ export default defineConfig({
     // Vite resolves these extensions in order — covers both .js and .jsx imports
     extensions: ['.jsx', '.js', '.tsx', '.ts', '.json'],
   },
+  // server: {
+  //   port: 3000,
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:5000',
+  //       changeOrigin: true,
+  //     },
+  //   },
+  // },
   server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
+  port: 3000,
+  proxy: {
+    '/api': {
+      target: process.env.VITE_API_URL || 'http://localhost:5000',
+      changeOrigin: true,
     },
   },
+},
   build: {
     outDir: 'dist',
     sourcemap: false,
